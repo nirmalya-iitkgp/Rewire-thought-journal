@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import { Shield, Download, Trash2, Moon, Sun, Monitor, LogOut } from 'lucide-react';
 import { toast } from 'sonner';
 

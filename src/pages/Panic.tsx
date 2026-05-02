@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { ChevronRight, Wind, Eye, Target } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { calculateUrgeIntensity, getCrisisSupportLine } from '@/engine/logic';

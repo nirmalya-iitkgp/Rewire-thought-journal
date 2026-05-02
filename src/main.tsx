@@ -10,7 +10,7 @@ import Onboarding from './pages/Onboarding.tsx';
 import Settings from './pages/Settings.tsx';
 import Game from './pages/Game.tsx';
 import './index.css';
-import { Toaster } from '@/components/ui/Sonner';
+import { Toaster } from '@/components/ui/sonner';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

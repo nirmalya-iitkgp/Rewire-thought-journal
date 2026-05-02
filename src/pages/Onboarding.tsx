@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/lib/store';
 import { db } from '@/lib/db';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { Shield, Sparkles, Heart, ArrowRight } from 'lucide-react';
 
 const onboardingSteps = [

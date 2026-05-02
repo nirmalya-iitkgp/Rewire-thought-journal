@@ -11,22 +11,25 @@ import Settings from './pages/Settings.tsx';
 import Game from './pages/Game.tsx';
 import './index.css';
 import { Toaster } from '@/components/ui/sonner.tsx';
+import { ThemeProvider } from 'next-themes';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/onboarding" element={<Onboarding />} />
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="panic" element={<Panic />} />
-          <Route path="checkin" element={<Checkin />} />
-          <Route path="reflect" element={<Reflection />} />
-          <Route path="game" element={<Game />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-      </Routes>
-      <Toaster position="top-center" />
-    </BrowserRouter>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="panic" element={<Panic />} />
+            <Route path="checkin" element={<Checkin />} />
+            <Route path="reflect" element={<Reflection />} />
+            <Route path="game" element={<Game />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+        </Routes>
+        <Toaster position="top-center" />
+      </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 );

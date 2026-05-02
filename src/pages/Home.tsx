@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store';
 import { detectTriggerRisk, getWellbeingState, getRandomMission } from '@/engine/logic';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { CheckCircle2, ArrowRight, Sun, Moon, Coffee, Heart } from 'lucide-react';
+import { CheckCircle2, Sun, Moon, Coffee, Heart } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Home() {
@@ -73,15 +73,15 @@ export default function Home() {
     <div className="space-y-16 py-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <header className="space-y-6 text-center lg:text-left">
         <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-[0.2em]">Current Momentum</p>
-        <h1 className="text-5xl lg:text-6xl font-serif font-light italic leading-tight text-primary">
+        <h1 className="text-5xl lg:text-6xl italic leading-tight text-primary">
           {new Date().getHours() > 17 ? "It's a quiet evening." : "A calm day ahead."}
         </h1>
-        <p className="text-xl text-muted-foreground/80 max-w-sm mx-auto lg:mx-0">
+        <p className="text-lg text-muted-foreground/80 max-w-sm mx-auto lg:mx-0 leading-relaxed font-light">
           The quiet moments are where your progress lives. You're doing better than you think.
         </p>
       </header>
 
-      <Card className="p-12 border border-border shadow-[0_4px_40px_rgba(0,0,0,0.02)] rounded-[3rem] bg-card hover:scale-[1.01] transition-transform duration-500 group cursor-default">
+      <Card className="p-12 border border-border shadow-[0_4px_40px_rgba(0,0,0,0.02)] rounded-[3rem] bg-card hover:scale-[1.01] transition-all duration-500 group">
         <div className="space-y-8 flex flex-col items-center text-center">
           <div className="space-y-2">
             <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-[0.25em]">Today's Mission</p>
@@ -90,34 +90,35 @@ export default function Home() {
             </h2>
           </div>
           
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed max-w-xs">
             {currentAction.description}
           </p>
 
-          <button 
+          <Button 
+            variant="ghost"
             onClick={handleDone}
-            className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary font-medium transition-all group-hover:translate-y-[-2px]"
+            className="flex items-center justify-center gap-3 text-muted-foreground hover:text-primary font-medium transition-all group-hover:translate-y-[-2px] h-auto p-0"
           >
             <div className="w-6 h-6 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
               <CheckCircle2 className="w-3 h-3 text-transparent group-hover:text-primary-foreground" />
             </div>
             <span>I did this</span>
-          </button>
+          </Button>
         </div>
       </Card>
 
-      <footer className="w-full flex justify-between items-end border-t border-border pt-12">
+      <footer className="w-full flex justify-between items-end border-t border-border/50 pt-12 mt-auto">
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-[#5B6D5B]">
             <span className="text-lg leading-none">🌿</span>
-            <span className="text-[10px] font-bold uppercase tracking-wider">{wellbeing.split(' ')[1]}</span>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">{wellbeing.split(' ')[1]}</span>
           </div>
-          <p className="text-muted-foreground text-xs max-w-[180px] leading-relaxed">
+          <p className="text-muted-foreground text-[11px] max-w-[180px] leading-relaxed italic">
             Your new routine is now stronger than the old one. Keep tending to it.
           </p>
         </div>
         <div className="text-right space-y-1">
-          <p className="text-primary text-xs font-semibold">"Your toughest window was Tuesday."</p>
+          <p className="text-primary text-[11px] font-semibold">"Your toughest window was Tuesday."</p>
           <p className="text-muted-foreground text-[10px]">You've handled this behavioral shift well.</p>
         </div>
       </footer>

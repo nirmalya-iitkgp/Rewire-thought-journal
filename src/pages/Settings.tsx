@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Shield, Download, Trash2, Moon, Sun, Monitor, LogOut } from 'lucide-react';
+import { Shield, Download, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Settings() {
@@ -52,19 +51,19 @@ export default function Settings() {
     <div className="space-y-16 py-8 animate-in fade-in duration-800">
       <header className="space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Controls</p>
-        <h2 className="text-4xl font-serif italic text-primary">Your Space.</h2>
+        <h2 className="text-4xl italic text-primary leading-tight font-serif italic">Your Space.</h2>
       </header>
 
       <section className="space-y-6">
-        <h3 className="text-xl font-serif">Privacy & Data</h3>
+        <h3 className="text-xl font-medium tracking-tight">Privacy & Data</h3>
         <Card className="p-8 border border-border bg-card rounded-[2.5rem] space-y-8">
           <div className="flex items-start gap-6">
             <div className="p-4 bg-primary/5 rounded-2xl">
               <Shield className="w-6 h-6 text-primary/40" />
             </div>
             <div className="space-y-2">
-              <p className="font-medium">Everything stays local</p>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="font-semibold text-primary">Everything stays local</p>
+              <p className="text-sm text-muted-foreground leading-relaxed font-light">
                 Your data is stored only on this device. We don't have accounts, 
                 and we never see what you write or how you feel.
               </p>
@@ -72,18 +71,20 @@ export default function Settings() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 pt-4">
-            <button
+            <Button
+              variant="outline"
               onClick={handleExport}
               disabled={isExporting}
-              className="w-full h-14 flex items-center justify-between px-6 bg-secondary/30 rounded-2xl hover:bg-secondary transition-all"
+              className="w-full h-14 flex items-center justify-between px-6 bg-secondary/30 rounded-2xl hover:bg-secondary transition-all border-none"
             >
               <div className="flex items-center gap-3">
                 <Download className="w-4 h-4" />
                 <span className="text-sm font-medium">Export Workspace</span>
               </div>
-            </button>
+            </Button>
 
-            <button
+            <Button
+              variant="ghost"
               onClick={handleReset}
               className="w-full h-14 flex items-center justify-between px-6 text-destructive hover:bg-destructive/10 rounded-2xl transition-all"
             >
@@ -91,28 +92,29 @@ export default function Settings() {
                 <Trash2 className="w-4 h-4" />
                 <span className="text-sm font-medium">Delete All Data</span>
               </div>
-            </button>
+            </Button>
           </div>
         </Card>
       </section>
 
       <section className="space-y-6">
-        <h3 className="text-xl font-serif">Preferences</h3>
+        <h3 className="text-xl font-medium tracking-tight">Preferences</h3>
         <Card className="p-8 border border-border bg-card rounded-[2.5rem] space-y-6">
            <div className="flex items-center justify-between">
               <span className="text-sm font-medium">Reset Onboarding</span>
-              <button 
+              <Button 
+                variant="link"
                 onClick={handleQuitOnboarding}
-                className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                className="text-xs text-muted-foreground hover:text-primary transition-colors h-auto p-0"
               >
                 Start Over
-              </button>
+              </Button>
            </div>
         </Card>
       </section>
 
       <footer className="text-center pt-8 border-t border-border flex flex-col items-center gap-4">
-        <p className="text-xs text-muted-foreground italic max-w-xs mx-auto">
+        <p className="text-xs text-muted-foreground italic max-w-xs mx-auto font-light">
           "The best tools are those you eventually put down because they worked."
         </p>
         <div className="w-1 h-1 rounded-full bg-primary/20" />

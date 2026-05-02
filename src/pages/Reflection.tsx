@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
 import { getWellbeingState, generateReflectionNarrative } from '@/engine/logic';
 import { Card } from '@/components/ui/card';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { History, Sparkles } from 'lucide-react';
 
 export default function Reflection() {
@@ -18,7 +18,7 @@ export default function Reflection() {
     <div className="space-y-16 py-8 animate-in fade-in duration-1000">
       <header className="space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Growth Journey</p>
-        <h2 className="text-4xl font-serif italic text-primary leading-tight">Your story, unfolding.</h2>
+        <h2 className="text-4xl italic text-primary leading-tight font-serif italic">Your story, unfolding.</h2>
       </header>
 
       <section className="relative">
@@ -40,25 +40,29 @@ export default function Reflection() {
         </div>
         
         <div className="space-y-4">
-          {actions?.map((action, i) => (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              key={action.id}
-              className="flex items-center justify-between p-6 bg-secondary/20 rounded-[2rem] border border-border/10"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-primary/30" />
-                <span className="text-sm font-medium text-primary/80">{action.description || 'Action completed'}</span>
-              </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
-                {new Date(action.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
-              </span>
-            </motion.div>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {actions?.map((action, i) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                key={action.id}
+                className="group flex items-center justify-between p-6 bg-secondary/20 rounded-[2rem] border border-border/10 hover:bg-secondary/30 transition-all duration-500"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover:scale-125 transition-transform" />
+                  <span className="text-sm font-medium text-primary/80">{action.description || 'Action completed'}</span>
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/60">
+                  {new Date(action.timestamp).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                </span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
           {actions?.length === 0 && (
-            <p className="text-muted-foreground italic text-center py-12">
+            <p className="text-muted-foreground italic text-center py-12 font-light">
               No actions logged yet. Your journey begins with the next small choice.
             </p>
           )}

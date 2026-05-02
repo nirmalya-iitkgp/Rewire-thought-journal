@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, Wind, Eye, Target } from 'lucide-react';
+import { Wind, Eye, Target } from 'lucide-react';
 import { useStore } from '@/lib/store';
 import { calculateUrgeIntensity, getCrisisSupportLine } from '@/engine/logic';
 
@@ -62,8 +62,8 @@ export default function Panic() {
           className="space-y-12 max-w-sm"
         >
           <div className="space-y-4">
-            <h2 className="text-4xl font-serif italic text-primary leading-tight">{currentStep.title}</h2>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <h2 className="text-4xl italic text-primary leading-tight">{currentStep.title}</h2>
+            <p className="text-xl text-muted-foreground leading-relaxed font-light">
               {currentStep.description}
             </p>
           </div>
@@ -113,12 +113,13 @@ export default function Panic() {
       </AnimatePresence>
 
       <div className="w-full max-w-xs pt-12">
-        <button 
+        <Button 
+          variant="outline"
           onClick={() => step < steps.length - 1 ? setStep(step + 1) : setStep(0)}
           className="w-full h-16 rounded-full border border-border bg-card text-primary font-medium tracking-tight text-lg hover:bg-secondary transition-all active:scale-95 shadow-[0_4px_12px_rgba(0,0,0,0.02)]"
         >
           {currentStep.action}
-        </button>
+        </Button>
       </div>
     </div>
   );

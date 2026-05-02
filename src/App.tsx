@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, Home as HomeIcon, Heart, Calendar, AlertCircle, Settings as SettingsIcon } from 'lucide-react';
+import { Home as HomeIcon, Heart, Calendar, AlertCircle, Settings as SettingsIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useStore } from '@/lib/store';
 
@@ -25,7 +25,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-background font-sans selection:bg-primary/10">
+    <div className="min-h-screen bg-background font-sans selection:bg-primary/10 transition-colors duration-500">
       {/* Background Decor */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]" />
@@ -58,14 +58,14 @@ export default function App() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex-1 flex flex-col"
           >
             <Outlet />
           </motion.div>
         </AnimatePresence>
 
-        <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-sm bg-card/40 backdrop-blur-2xl border border-border/40 rounded-full h-16 flex items-center justify-around px-2 shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
+        <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[calc(100%-3rem)] max-w-sm bg-card/60 backdrop-blur-2xl border border-border/40 rounded-full h-16 flex items-center justify-around px-2 shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;

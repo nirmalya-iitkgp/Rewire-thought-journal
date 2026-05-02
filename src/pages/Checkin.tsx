@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { db } from '@/lib/db';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
@@ -67,7 +66,7 @@ export default function Checkin() {
     <div className="flex-1 flex flex-col justify-center space-y-16 py-12 animate-in fade-in duration-1000">
       <header className="text-center space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Daily Check-in</p>
-        <h2 className="text-4xl font-serif italic text-primary leading-tight">A brief moment to pause.</h2>
+        <h2 className="text-4xl italic text-primary leading-tight">A brief moment to pause.</h2>
       </header>
 
       <AnimatePresence mode="wait">
@@ -79,21 +78,21 @@ export default function Checkin() {
           transition={{ duration: 0.6 }}
           className="space-y-12"
         >
-          <p className="text-2xl text-center font-medium px-4 text-muted-foreground">
+          <p className="text-2xl text-center font-light px-4 text-muted-foreground">
             {questions[step].text}
           </p>
 
-          <div className="grid grid-cols-3 gap-6 max-w-sm mx-auto">
+          <div className="grid grid-cols-3 gap-4 mx-auto">
             {questions[step].options.map((opt) => (
-              <button
+              <Button
                 key={opt.value}
-                id={`checkin-opt-${opt.label.toLowerCase()}`}
+                variant="ghost"
                 onClick={() => handleSelect(opt.value)}
-                className="group flex flex-col items-center gap-4 p-8 bg-card border border-border shadow-[0_4px_24px_rgba(0,0,0,0.02)] rounded-[2.5rem] hover:bg-primary transition-all duration-500 transform active:scale-95"
+                className="group flex flex-col items-center gap-4 p-8 h-auto bg-card border border-border shadow-[0_4px_24px_rgba(0,0,0,0.02)] rounded-[2.5rem] hover:bg-primary transition-all duration-500 transform active:scale-95"
               >
                 <span className="text-4xl group-hover:scale-110 transition-transform duration-500">{opt.emoji}</span>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-muted-foreground group-hover:text-primary-foreground">{opt.label}</span>
-              </button>
+                <span className="text-[10px] uppercase font-extrabold tracking-widest text-muted-foreground group-hover:text-primary-foreground">{opt.label}</span>
+              </Button>
             ))}
           </div>
         </motion.div>
@@ -103,7 +102,7 @@ export default function Checkin() {
         {questions.map((_, i) => (
           <div 
             key={i} 
-            className={`h-1 rounded-full transition-all duration-700 ${i === step ? 'w-10 bg-primary' : 'w-2 bg-primary/10'}`} 
+            className={`h-1 rounded-full transition-all duration-700 ${i <= step ? 'w-10 bg-primary' : 'w-2 bg-primary/10'}`} 
           />
         ))}
       </div>

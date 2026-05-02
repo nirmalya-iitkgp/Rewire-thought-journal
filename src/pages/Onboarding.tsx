@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStore } from '@/lib/store';
 import { db } from '@/lib/db';
 import { Button } from '@/components/ui/button';
-import { Shield, Sparkles, Heart, ArrowRight } from 'lucide-react';
+import { Shield, Sparkles, Heart } from 'lucide-react';
 
 const onboardingSteps = [
   {
@@ -27,7 +27,6 @@ const onboardingSteps = [
 export default function Onboarding() {
   const [step, setStep] = useState(0);
   const [baseline, setBaseline] = useState({ mood: 1, energy: 1, connection: 1 });
-  const [isFinishing, setIsFinishing] = useState(false);
   const { setInitialised } = useStore();
   const navigate = useNavigate();
 
@@ -68,17 +67,17 @@ export default function Onboarding() {
               <h1 className="text-4xl font-serif italic text-primary leading-tight">
                 {onboardingSteps[step].title}
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
+              <p className="text-xl text-muted-foreground leading-relaxed font-light">
                 {onboardingSteps[step].description}
               </p>
             </div>
 
-            <button
+            <Button
                onClick={handleNext}
                className="w-full h-16 rounded-full bg-primary text-primary-foreground font-medium text-lg transition-all active:scale-95 shadow-xl shadow-primary/5"
             >
               Continue
-            </button>
+            </Button>
           </motion.div>
         ) : (
           <motion.div
@@ -89,48 +88,50 @@ export default function Onboarding() {
           >
             <div className="space-y-4">
               <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Starting point</p>
-              <h2 className="text-4xl font-serif italic text-primary leading-tight">How have you been feeling lately?</h2>
-              <p className="text-muted-foreground">This helps us tailor the experience to your needs.</p>
+              <h2 className="text-4xl font-serif italic text-primary leading-tight font-serif italic">How have you been feeling lately?</h2>
+              <p className="text-muted-foreground font-light">This helps us tailor the experience to your needs.</p>
             </div>
 
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <p className="text-sm font-medium">General Mood</p>
-                <div className="flex justify-center gap-4">
+            <div className="space-y-12">
+              <div className="space-y-6">
+                <p className="text-sm font-semibold tracking-wide uppercase text-muted-foreground/60">General Mood</p>
+                <div className="flex justify-center gap-6">
                   {[0, 1, 2].map(v => (
-                    <button
+                    <Button
                       key={v}
+                      variant="ghost"
                       onClick={() => setBaseline(prev => ({ ...prev, mood: v }))}
-                      className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl transition-all ${baseline.mood === v ? 'bg-primary text-white scale-110' : 'bg-secondary/50 text-muted-foreground bg-card shadow-sm border border-border/50'}`}
+                      className={`w-20 h-20 rounded-[2rem] flex items-center justify-center text-3xl transition-all h-auto p-0 ${baseline.mood === v ? 'bg-primary text-white scale-110 shadow-lg shadow-primary/20' : 'bg-card border border-border/50 text-muted-foreground'}`}
                     >
                       {v === 0 ? '🌧️' : v === 1 ? '⛅' : '☀️'}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <p className="text-sm font-medium">Social Connection</p>
-                <div className="flex justify-center gap-4">
+              <div className="space-y-6">
+                <p className="text-sm font-semibold tracking-wide uppercase text-muted-foreground/60">Social Connection</p>
+                <div className="flex justify-center gap-6">
                   {[0, 1, 2].map(v => (
-                    <button
+                    <Button
                       key={v}
+                      variant="ghost"
                       onClick={() => setBaseline(prev => ({ ...prev, connection: v }))}
-                      className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl transition-all ${baseline.connection === v ? 'bg-primary text-white scale-110' : 'bg-secondary/50 text-muted-foreground bg-card shadow-sm border border-border/50'}`}
+                      className={`w-20 h-20 rounded-[2rem] flex items-center justify-center text-3xl transition-all h-auto p-0 ${baseline.connection === v ? 'bg-primary text-white scale-110 shadow-lg shadow-primary/20' : 'bg-card border border-border/50 text-muted-foreground'}`}
                     >
                       {v === 0 ? '🏝️' : v === 1 ? '😶' : '🤝'}
-                    </button>
+                    </Button>
                   ))}
                 </div>
               </div>
             </div>
 
-            <button
+            <Button
                onClick={handleFinish}
-               className="w-full h-16 rounded-full bg-primary text-primary-foreground font-medium text-lg transition-all active:scale-95 shadow-xl shadow-primary/5"
+               className="w-full h-16 rounded-full bg-primary text-primary-foreground font-medium text-lg transition-all active:scale-95 shadow-xl shadow-primary/5 mt-8"
             >
               Begin Journey
-            </button>
+            </Button>
           </motion.div>
         )}
       </AnimatePresence>

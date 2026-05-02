@@ -1,17 +1,17 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './App.tsx';
-import Home from './pages/Home.tsx';
-import Panic from './pages/Panic.tsx';
-import Checkin from './pages/Checkin.tsx';
-import Reflection from './pages/Reflection.tsx';
-import Onboarding from './pages/Onboarding.tsx';
-import Settings from './pages/Settings.tsx';
-import Game from './pages/Game.tsx';
+import { ThemeProvider } from 'next-themes';
+import App from './App';
+import Home from './pages/Home';
+import Panic from './pages/Panic';
+import Checkin from './pages/Checkin';
+import Reflection from './pages/Reflection';
+import Onboarding from './pages/Onboarding';
+import Settings from './pages/Settings';
+import Game from './pages/Game';
 import './index.css';
 import { Toaster } from '@/components/ui/sonner';
-import { ThemeProvider } from 'next-themes';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

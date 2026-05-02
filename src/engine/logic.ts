@@ -1,3 +1,5 @@
+import { Action, CheckIn } from '@/lib/db';
+
 /**
  * ENGINE-1: URGE DECAY PREDICTOR
  * Model: I(t) = I₀ · e^(−λt)
@@ -79,12 +81,13 @@ export const getRandomMission = () => {
   return CONNECTION_MISSIONS[Math.floor(Math.random() * CONNECTION_MISSIONS.length)];
 };
 
+
 /**
  * NARRATIVE ENGINE: WEEKLY REFLECTION
  */
 export const generateReflectionNarrative = (
-  actions: any[] = [], 
-  checkins: any[] = [], 
+  actions: Action[] = [], 
+  checkins: CheckIn[] = [], 
   momentum: number, 
   userK: number
 ) => {

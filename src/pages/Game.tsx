@@ -45,7 +45,7 @@ export default function Game() {
     <div className="flex-1 flex flex-col justify-center space-y-16 py-12 animate-in fade-in duration-1000">
       <header className="text-center space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Focus Exercise</p>
-        <h2 className="text-4xl italic text-primary leading-tight font-serif italic">A choice of perspective.</h2>
+        <h2 className="text-4xl font-serif italic text-primary leading-tight">A choice of perspective.</h2>
       </header>
 
       <AnimatePresence mode="wait">

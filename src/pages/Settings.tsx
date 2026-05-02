@@ -3,10 +3,12 @@ import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Shield, Download, Trash2 } from 'lucide-react';
+import { Shield, Download, Trash2, Brain } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 export default function Settings() {
+  const navigate = useNavigate();
   const { setInitialised } = useStore();
   const [isExporting, setIsExporting] = useState(false);
 
@@ -51,7 +53,7 @@ export default function Settings() {
     <div className="space-y-16 py-8 animate-in fade-in duration-800">
       <header className="space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Controls</p>
-        <h2 className="text-4xl italic text-primary leading-tight font-serif italic">Your Space.</h2>
+        <h2 className="text-4xl font-serif italic text-primary leading-tight">Your Space.</h2>
       </header>
 
       <section className="space-y-6">
@@ -98,8 +100,21 @@ export default function Settings() {
       </section>
 
       <section className="space-y-6">
-        <h3 className="text-xl font-medium tracking-tight">Preferences</h3>
+        <h3 className="text-xl font-medium tracking-tight">Personal Tools</h3>
         <Card className="p-8 border border-border bg-card rounded-[2.5rem] space-y-6">
+           <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Brain className="w-4 h-4 text-primary/40" />
+                <span className="text-sm font-medium">Focus Exercise</span>
+              </div>
+              <Button 
+                variant="outline"
+                onClick={() => navigate('/game')}
+                className="text-xs h-8 px-4 rounded-full"
+              >
+                Launch
+              </Button>
+           </div>
            <div className="flex items-center justify-between">
               <span className="text-sm font-medium">Reset Onboarding</span>
               <Button 

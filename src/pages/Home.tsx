@@ -6,7 +6,7 @@ import { useStore } from '@/lib/store';
 import { detectTriggerRisk, getWellbeingState, getRandomMission } from '@/engine/logic';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { CheckCircle2, Sun, Moon, Coffee, Heart } from 'lucide-react';
+import { LucideIcon, CheckCircle2, Sun, Moon, Coffee, Heart } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
   const [currentAction, setCurrentAction] = useState<{
     title: string;
     description: string;
-    icon: any;
+    icon: LucideIcon;
     type: 'physical' | 'social' | 'mental';
   } | null>(null);
   
@@ -73,7 +73,7 @@ export default function Home() {
     <div className="space-y-16 py-4 animate-in fade-in slide-in-from-bottom-4 duration-1000">
       <header className="space-y-6 text-center lg:text-left">
         <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-[0.2em]">Current Momentum</p>
-        <h1 className="text-5xl lg:text-6xl italic leading-tight text-primary">
+        <h1 className="text-5xl lg:text-6xl font-serif italic leading-tight text-primary">
           {new Date().getHours() > 17 ? "It's a quiet evening." : "A calm day ahead."}
         </h1>
         <p className="text-lg text-muted-foreground/80 max-w-sm mx-auto lg:mx-0 leading-relaxed font-light">

@@ -18,7 +18,7 @@ export default function Reflection() {
     <div className="space-y-16 py-8 animate-in fade-in duration-1000">
       <header className="space-y-4">
         <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Growth Journey</p>
-        <h2 className="text-4xl italic text-primary leading-tight font-serif italic">Your story, unfolding.</h2>
+        <h2 className="text-4xl font-serif italic text-primary leading-tight">Your story, unfolding.</h2>
       </header>
 
       <section className="relative">

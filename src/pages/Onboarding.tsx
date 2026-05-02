@@ -88,7 +88,7 @@ export default function Onboarding() {
           >
             <div className="space-y-4">
               <p className="text-[10px] text-muted-foreground uppercase tracking-[0.25em] font-semibold">Starting point</p>
-              <h2 className="text-4xl font-serif italic text-primary leading-tight font-serif italic">How have you been feeling lately?</h2>
+              <h2 className="text-4xl font-serif italic text-primary leading-tight">How have you been feeling lately?</h2>
               <p className="text-muted-foreground font-light">This helps us tailor the experience to your needs.</p>
             </div>
 

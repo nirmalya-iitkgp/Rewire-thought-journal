@@ -2,7 +2,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
 import { getWellbeingState, generateReflectionNarrative } from '@/engine/logic';
-import { Card } from '@/components/ui/card.tsx';
+import { Card } from '@/components/ui/card';
 import { motion } from 'motion/react';
 import { History, Sparkles } from 'lucide-react';
 

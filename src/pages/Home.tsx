@@ -4,8 +4,8 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
 import { detectTriggerRisk, getWellbeingState, getRandomMission } from '@/engine/logic';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button.tsx';
+import { Card } from '@/components/ui/card.tsx';
 import { CheckCircle2, ArrowRight, Sun, Moon, Coffee, Heart } from 'lucide-react';
 import { toast } from 'sonner';
 

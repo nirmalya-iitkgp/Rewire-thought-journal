@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button.tsx';
+import { Card } from '@/components/ui/card.tsx';
 import { toast } from 'sonner';
 import { Trophy, Clock } from 'lucide-react';
 

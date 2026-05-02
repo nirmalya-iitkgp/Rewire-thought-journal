@@ -1,30 +1,18 @@
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/lib/db';
 import { useStore } from '@/lib/store';
-import { getWellbeingState } from '@/engine/logic';
+import { getWellbeingState, generateReflectionNarrative } from '@/engine/logic';
 import { Card } from '@/components/ui/card';
 import { motion } from 'motion/react';
-import { Leaf, History, Sparkles } from 'lucide-react';
+import { History, Sparkles } from 'lucide-react';
 
 export default function Reflection() {
   const { habitMomentum, userK } = useStore();
-  const actions = useLiveQuery(() => db.actions.orderBy('timestamp').reverse().limit(10).toArray());
+  const actions = useLiveQuery(() => db.actions.orderBy('timestamp').reverse().limit(20).toArray());
   const checkins = useLiveQuery(() => db.checkins.orderBy('timestamp').reverse().limit(7).toArray());
 
   const wellbeing = getWellbeingState(habitMomentum, userK);
-
-  // Simple narrative generator based on engine outputs
-  const generateNarrative = () => {
-    const recentHealthy = actions?.filter(a => a.type === 'healthy' && a.success).length || 0;
-    const avgMood = checkins?.reduce((acc, c) => acc + c.mood, 0) || 0 / (checkins?.length || 1);
-
-    let message = "You're finding your rhythm. ";
-    if (recentHealthy > 5) message += "This week, you've consistently chosen healthy paths. ";
-    if (avgMood > 1.2) message += "Your overall outlook is stabilizing. ";
-    if (habitMomentum > 0.6) message += "The new ways of being are starting to feel natural now. ";
-    
-    return message || "Every small choice you make builds the foundation for tomorrow.";
-  };
+  const narrative = generateReflectionNarrative(actions || [], checkins || [], habitMomentum, userK);
 
   return (
     <div className="space-y-16 py-8 animate-in fade-in duration-1000">
@@ -37,10 +25,10 @@ export default function Reflection() {
         <Card className="p-12 border border-border bg-card shadow-[0_4px_40px_rgba(0,0,0,0.02)] rounded-[3rem] space-y-8">
           <div className="flex items-center gap-3">
             <Sparkles className="w-5 h-5 text-primary/40" />
-            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-muted-foreground">Self-Reflection</span>
+            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-muted-foreground">Weekly Reflection</span>
           </div>
           <p className="text-2xl font-serif leading-relaxed italic text-primary">
-            "{generateNarrative()}"
+            "{narrative}"
           </p>
         </Card>
       </section>

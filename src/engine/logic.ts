@@ -80,6 +80,65 @@ export const getRandomMission = () => {
 };
 
 /**
+ * NARRATIVE ENGINE: WEEKLY REFLECTION
+ */
+export const generateReflectionNarrative = (
+  actions: any[] = [], 
+  checkins: any[] = [], 
+  momentum: number, 
+  userK: number
+) => {
+  const healthyActions = actions.filter(a => a.type === 'healthy' && a.success).length;
+  const totalMood = checkins.reduce((acc, c) => acc + (c.mood || 0), 0);
+  const avgMood = checkins.length > 0 ? totalMood / checkins.length : 1;
+  const recentImpulses = actions.filter(a => a.type === 'impulse').length;
+
+  const templates = {
+    highMomentum: [
+      "You've built significant momentum lately. The choices that once felt like a struggle are becoming your new baseline.",
+      "There's a clear rhythm to your progress. You're no longer just trying to change; you're actively evolving.",
+      "Your resilience is speaking for itself. Even the quieter days are fueled by the strength you've gathered."
+    ],
+    improvingMood: [
+      "It's encouraging to see your inner weather starting to clear. You're holding more space for yourself.",
+      "The steady uptick in your mood suggests you're finding better ways to navigate the heavy moments.",
+      "You're becoming more grounded. That stability is the best foundation for everything else you want to do."
+    ],
+    resilience: [
+      "Even on the days where impulses felt loud, you showed up for yourself. That's where the real growth happens.",
+      "Growth isn't a straight line, but your commitment to checking in shows a deep respect for your own journey.",
+      "You're learning to sit with the noise without letting it drive. Every time you pause, you win."
+    ],
+    default: [
+      "Every small choice you make is a vote for the person you're becoming. Keep showing up.",
+      "The path is long, but your presence here today is proof that you're moving in the right direction.",
+      "Be gentle with yourself. You're doing the work of rewiring, and that takes time and patience."
+    ]
+  };
+
+  let narrative = "";
+  
+  if (momentum > 0.7) {
+    narrative = templates.highMomentum[Math.floor(Math.random() * templates.highMomentum.length)];
+  } else if (avgMood > 1.5 && checkins.length > 3) {
+    narrative = templates.improvingMood[Math.floor(Math.random() * templates.improvingMood.length)];
+  } else if (recentImpulses > 0 && healthyActions > recentImpulses) {
+    narrative = templates.resilience[Math.floor(Math.random() * templates.resilience.length)];
+  } else {
+    narrative = templates.default[Math.floor(Math.random() * templates.default.length)];
+  }
+
+  // Add a specific detail if applicable
+  if (healthyActions > 3) {
+    narrative += " Seeing you choose healthy alternatives multiple times this week shows real transformation.";
+  } else if (checkins.length > 5) {
+    narrative += " Your consistency in self-reflection is your greatest superpower right now.";
+  }
+
+  return narrative;
+};
+
+/**
  * CRISIS PROTOCOL
  * Warm, non-clinical help detection
  */

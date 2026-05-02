@@ -1,0 +1,6 @@
+{
+  "name": "Rewire",
+  "description": "A privacy-first app to help men break compulsive digital habits and reduce loneliness through behavioral science.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["habit-tracking", "wellbeing-analysis", "privacy-first"]
+}
